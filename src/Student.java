@@ -1,4 +1,3 @@
-
 public class Student {
 
 	String firstName = "";
@@ -10,15 +9,21 @@ public class Student {
 	}
 	Gender gender = Gender.HERMAPHRODIT;
 	
-	public Student (String firstName, String lastName, Gender gender, int grade) {
+	public enum House {
+		 Gryffindor, Hufflepuff, Ravenclaw, Slytherin
+	}
+	House house = House.Gryffindor;
+	
+	public Student (String firstName, String lastName, Gender gender, int grade, House house) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
 		this.grade = grade;
+		this.house = house;
 	}
 	
 	public String toString () {
-		return firstName + " " + lastName + ", Gender: " + gender + ", Grade: " + grade;
+		return firstName + " " + lastName + ", Gender: " + gender + ", Grade: " + grade + ", House: " + house;
 	}
 	
 }

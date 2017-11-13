@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-
 public class School {
 	
 	//Variables for this class
@@ -9,6 +8,8 @@ public class School {
 	int numStudents = 0;
 	String name = "Unknown School";
 	int MAX_STUDENTS = 0;
+	String Principal = "";
+	
 
 	/**
 	 * Start the execution of your program here.
@@ -32,19 +33,19 @@ public class School {
 	 */
 	public static void main(String args[]) {
 		//TODO create a school (similar to the library)
-		School mySchool = new School("Hogwarts", 7500);
+		School mySchool = new School("Hogwarts School of Witchcraft and Wizardry", 7500, "Dumbldore");
 		
-		mySchool.AddSingleStudent("Harry", "Potter", Student.Gender.MALE, 1);
+		mySchool.AddSingleStudent("Harry", "Potter", Student.Gender.MALE, 1, Student.House.Gryffindor);
 		
-		mySchool.AddSingleStudent("Draco", "Malfoy", Student.Gender.MALE, 1);
+		mySchool.AddSingleStudent("Draco", "Malfoy", Student.Gender.MALE, 1, Student.House.Slytherin);
 		
-		mySchool.AddSingleStudent("Hermy", "Granger", Student.Gender.FEMALE, 1);
+		mySchool.AddSingleStudent("Hermy", "Granger", Student.Gender.FEMALE, 1, Student.House.Gryffindor);
 		
-		mySchool.AddSingleStudent("Fred", "Wesley", Student.Gender.MALE, 3);
+		mySchool.AddSingleStudent("Fred", "Wesley", Student.Gender.MALE, 3, Student.House.Gryffindor);
 		
-		mySchool.AddSingleStudent("George", "Wesley", Student.Gender.MALE, 3);
+		mySchool.AddSingleStudent("George", "Wesley", Student.Gender.MALE, 3, Student.House.Gryffindor);
 		
-		mySchool.AddSingleStudent("Serge", "Ilinskiy", Student.Gender.MALE, 3);
+		mySchool.AddSingleStudent("Sedric", "Diggory", Student.Gender.MALE, 3, Student.House.Hufflepuff);
 		
 		mySchool.removeSingleStudent();
 		
@@ -61,10 +62,11 @@ public class School {
 	 * this.name refers to the global variable for the class. String name is the name we pass in when building the school
 	 * @param name
 	 */
-	public School(String name, int maxStudents) {
+	public School(String name, int maxStudents, String principal) {
 		this.name = name;
 		this.MAX_STUDENTS = maxStudents;
 		this.library = new Library ();
+		this.Principal = principal;
 	}
 	
 	/**
@@ -81,10 +83,10 @@ public class School {
 	/**
 	 * adds a single student to the school
 	 */
-	public void AddSingleStudent(String firstName, String lastName, Student.Gender gender, int grade) {
+	public void AddSingleStudent(String firstName, String lastName, Student.Gender gender, int grade, Student.House house) {
 		if(numStudents < MAX_STUDENTS) {
 			numStudents++;
-			students.add(new Student (firstName, lastName, gender, grade));
+			students.add(new Student (firstName, lastName, gender, grade, house));
 			
 		}
 		//Do I need a MAX_STUDENTS ??? Yees? 
@@ -111,8 +113,8 @@ public class School {
 	}
 	
 	public String getInfo() {
-		String returnString = "School: '" + this.name + "', number of students " + this.numStudents + " of capasity " + this.MAX_STUDENTS;
-		
+		String returnString = "School: '" + this.name + "', number of students " + this.numStudents + " of capasity " + this.MAX_STUDENTS + ", Headmaster: "
++ this.Principal;		
 		returnString += "\nStudents:\n";
 		for (Student s : students ) {
 			returnString += "    " + s + "\n";
